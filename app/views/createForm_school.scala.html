@@ -1,0 +1,24 @@
+@(schoolForm: Form[School])
+
+@import helper._
+@import bootstrap._
+
+@main {
+
+<h1>Создание нового объекта</h1>
+
+@form(routes.SchoolController.save()) {
+
+<fieldset>
+    @CSRF.formField
+    @text(schoolForm("title"), '_label -> "Название", '_help -> "")
+    @bootstrap.textarea(schoolForm("description"), '_label -> "Описание", '_help -> "", 'rows -> 10)
+    @text(schoolForm("imageUrl"), '_label -> "Ссылка на картинку", '_help -> "")
+</fieldset>
+
+<div class="actions">
+    <input type="submit" value="Создать" class="btn btn-primary"> 
+    <a href="@routes.SchoolController.list()" class="btn btn-default">Отменить</a>
+</div>
+}
+}

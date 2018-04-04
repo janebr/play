@@ -1,0 +1,31 @@
+@(id: Long, teamForm: Form[Team])
+
+@import helper._
+@import bootstrap._
+
+@main {
+
+<h1>Команда</h1>
+
+@form(routes.TeamController.update(id)) {
+
+<fieldset>
+    @CSRF.formField
+    @text(teamForm("name"), '_label -> "Имя", '_help -> "")
+    @bootstrap.textarea(teamForm("description"), '_label -> "Описание", '_help -> "")
+    @text(teamForm("imageUrl"), '_label -> "Ссылка на картинку", '_help -> "")
+    <input type="hidden" name="@teamForm("id").getName" value="@teamForm("id").getValue">
+</fieldset>
+
+<div class="actions">
+    <input type="submit" value="Сохранить" class="btn primary">
+    <a href="@routes.TeamController.list()" class="btn btn-default">Отменить</a>
+</div>
+}
+<div class="actions mt-4">
+@form(routes.TeamController.delete(id), 'class -> "topRight") {
+    @CSRF.formField
+    <input type="submit" value="Удалить" class="btn btn-danger">
+}
+</div>
+}

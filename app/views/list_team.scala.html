@@ -1,0 +1,32 @@
+@(all: List[Team])
+
+@main {
+
+    <h1 id="homeTitle">Команда</h1>
+    @if(all.isEmpty) {
+        <div class="well">
+            <em>Нет данных для отображения</em>
+        </div>
+
+    } else {
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for(team <- all.asScala) {
+                    <tr>
+                        <td><a href="@routes.TeamController.edit(team.id)">@team.name</a></td>
+                        <td><a href="@routes.TeamController.edit(team.id)">@team.imageUrl</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <a href="@routes.TeamController.create()" class="btn btn-primary">Добавить</a>
+}

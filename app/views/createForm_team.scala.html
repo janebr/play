@@ -1,0 +1,24 @@
+@(teamForm: Form[Team])
+
+@import helper._
+@import bootstrap._
+
+@main {
+
+<h1>Создание нового объекта</h1>
+
+@form(routes.TeamController.save()) {
+
+<fieldset>
+    @CSRF.formField
+    @text(teamForm("name"), '_label -> "Имя", '_help -> "")
+    @bootstrap.textarea(teamForm("description"), '_label -> "Описание", '_help -> "", 'rows -> 10)
+    @text(teamForm("imageUrl"), '_label -> "Ссылка на картинку", '_help -> "")
+</fieldset>
+
+<div class="actions">
+    <input type="submit" value="Создать" class="btn btn-primary"> 
+    <a href="@routes.TeamController.list()" class="btn btn-default">Отменить</a>
+</div>
+}
+}

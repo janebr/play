@@ -1,0 +1,30 @@
+@(id: Long, galForm: Form[Gallery])
+
+@import helper._
+@import bootstrap._
+
+@main {
+
+<h1>Список</h1>
+
+@form(routes.GalleryController.update(id)) {
+
+<fieldset>
+    @CSRF.formField
+    @bootstrap.textarea(galForm("description"), '_label -> "Описание", '_help -> "")
+    @text(galForm("imageUrl"), '_label -> "Ссылка на картинку", '_help -> "")
+    <input type="hidden" name="@galForm("id").getName" value="@galForm("id").getValue">
+</fieldset>
+
+<div class="actions">
+    <input type="submit" value="Сохранить" class="btn primary">
+    <a href="@routes.GalleryController.list()" class="btn btn-default">Отменить</a>
+</div>
+}
+<div class="actions mt-4">
+@form(routes.GalleryController.delete(id), 'class -> "topRight") {
+    @CSRF.formField
+    <input type="submit" value="Удалить" class="btn btn-danger">
+}
+</div>
+}

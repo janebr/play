@@ -1,0 +1,33 @@
+@(id: Long, capForm: Form[Capabilities])
+
+@import helper._
+@import bootstrap._
+
+@main {
+
+<h1>Список</h1>
+
+@form(routes.CapabilitiesController.update(id)) {
+
+<fieldset>
+    @CSRF.formField
+    @text(capForm("title"), '_label -> "Название", '_help -> "")
+    @text(capForm("title2"), '_label -> "Доп. название", '_help -> "")
+    @bootstrap.textarea(capForm("description"), '_label -> "Описание", '_help -> "")
+    @text(capForm("classli"), '_label -> "Положение(слева/справа)", '_help -> "")
+    @text(capForm("imageUrl"), '_label -> "Ссылка на картинку", '_help -> "")
+    <input type="hidden" name="@capForm("id").getName" value="@capForm("id").getValue">
+</fieldset>
+
+<div class="actions">
+    <input type="submit" value="Сохранить" class="btn primary">
+    <a href="@routes.CapabilitiesController.list()" class="btn btn-default">Отменить</a>
+</div>
+}
+<div class="actions mt-4">
+@form(routes.CapabilitiesController.delete(id), 'class -> "topRight") {
+    @CSRF.formField
+    <input type="submit" value="Удалить" class="btn btn-danger">
+}
+</div>
+}

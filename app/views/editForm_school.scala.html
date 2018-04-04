@@ -1,0 +1,31 @@
+@(id: Long, schoolForm: Form[School])
+
+@import helper._
+@import bootstrap._
+
+@main {
+
+<h1>О школе</h1>
+
+@form(routes.SchoolController.update(id)) {
+
+<fieldset>
+    @CSRF.formField
+    @text(schoolForm("title"), '_label -> "Название", '_help -> "")
+    @bootstrap.textarea(schoolForm("description"), '_label -> "Описание", '_help -> "")
+    @text(schoolForm("imageUrl"), '_label -> "Ссылка на картинку", '_help -> "")
+    <input type="hidden" name="@schoolForm("id").getName" value="@schoolForm("id").getValue">
+</fieldset>
+
+<div class="actions">
+    <input type="submit" value="Сохранить" class="btn primary">
+    <a href="@routes.SchoolController.list()" class="btn btn-default">Отменить</a>
+</div>
+}
+<div class="actions mt-4">
+@form(routes.SchoolController.delete(id), 'class -> "topRight") {
+    @CSRF.formField
+    <input type="submit" value="Удалить" class="btn btn-danger">
+}
+</div>
+}

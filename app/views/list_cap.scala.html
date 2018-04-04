@@ -1,0 +1,33 @@
+@(all: List[Capabilities])
+
+@main {
+
+    <h1 id="homeTitle">Возможности</h1>
+    @if(all.isEmpty) {
+        <div class="well">
+            <em>Нет данных для отображения</em>
+        </div>
+
+    } else {
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for(cap <- all.asScala) {
+                    <tr>
+                        <td><a href="@routes.CapabilitiesController.edit(cap.id)">@cap.title</a></td>
+                        <td><a href="@routes.CapabilitiesController.edit(cap.id)">@cap.title2</a></td>
+                        <td><a href="@routes.CapabilitiesController.edit(cap.id)">@cap.classli</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <a href="@routes.CapabilitiesController.create()" class="btn btn-primary">Добавить</a>
+}

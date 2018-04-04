@@ -1,0 +1,31 @@
+@(all: List[School])
+
+@main {
+
+    <h1 id="homeTitle">О школе</h1>
+    @if(all.isEmpty) {
+        <div class="well">
+            <em>Нет данных для отображения</em>
+        </div>
+
+    } else {
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for(school <- all.asScala) {
+                    <tr>
+                        <td><a href="@routes.SchoolController.edit(school.id)">@school.title</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <a href="@routes.SchoolController.create()" class="btn btn-primary">Добавить</a>
+}

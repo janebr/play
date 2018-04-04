@@ -1,0 +1,23 @@
+@(galForm: Form[Gallery])
+
+@import helper._
+@import bootstrap._
+
+@main {
+
+<h1>Создание нового объекта</h1>
+
+@form(routes.GalleryController.save()) {
+
+<fieldset>
+    @CSRF.formField
+    @bootstrap.textarea(galForm("description"), '_label -> "Описание", '_help -> "", 'rows -> 10)
+    @text(galForm("imageUrl"), '_label -> "Ссылка на картинку", '_help -> "")
+</fieldset>
+
+<div class="actions">
+    <input type="submit" value="Создать" class="btn btn-primary"> 
+    <a href="@routes.GalleryController.list()" class="btn btn-default">Отменить</a>
+</div>
+}
+}

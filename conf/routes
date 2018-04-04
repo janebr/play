@@ -1,0 +1,57 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Маршрут к главной странице сайта
+GET     /                           controllers.HomeController.index
+
+GET     /capabilities               controllers.CapabilitiesController.list
+GET     /gallery                    controllers.GalleryController.list
+GET     /school                     controllers.SchoolController.list
+GET     /team                       controllers.TeamController.list
+
+GET     /sendmessage                controllers.HomeController.message
+
+GET     /more                       controllers.HomeController.more
+
+GET     /login                      controllers.AuthController.login()
+
+GET     /auth                       controllers.AuthController.auth()
+
+GET     /sighup                     controllers.AuthController.signup()
+
+GET     /register                   controllers.AuthController.register() 
+
+GET     /logout                     controllers.AuthController.logout()  
+             
+
+# Создание
+GET     /capabilities/new           controllers.CapabilitiesController.create()
+POST    /capabilities               controllers.CapabilitiesController.save()
+GET     /gallery/new                controllers.GalleryController.create()
+POST    /gallery                    controllers.GalleryController.save()
+GET     /school/new                 controllers.SchoolController.create()
+POST    /school                     controllers.SchoolController.save()
+GET     /team/new                   controllers.TeamController.create()
+POST    /team                       controllers.TeamController.save()
+
+# Редактирование
+GET     /capabilities/:id                controllers.CapabilitiesController.edit(id:Long)
+POST    /capabilities/:id                controllers.CapabilitiesController.update(id:Long)
+POST    /capabilities/:id/delete         controllers.CapabilitiesController.delete(id:Long)
+
+
+GET     /gallery/:id                controllers.GalleryController.edit(id:Long)
+POST    /gallery/:id                controllers.GalleryController.update(id:Long)
+POST    /gallery/:id/delete         controllers.GalleryController.delete(id:Long)
+
+GET     /school/:id                 controllers.SchoolController.edit(id:Long)
+POST    /school/:id                 controllers.SchoolController.update(id:Long)
+POST    /school/:id/delete          controllers.SchoolController.delete(id:Long)
+
+GET     /team/:id                   controllers.TeamController.edit(id:Long)
+POST    /team/:id                   controllers.TeamController.update(id:Long)
+POST    /team/:id/delete            controllers.TeamController.delete(id:Long)
+# Отображает статические файлы из папки /public в /public URL
+#GET     /public/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /*file                       controllers.Assets.versioned(path="/public", file: Asset)
